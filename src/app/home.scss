@@ -1,0 +1,31 @@
+.home-container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70vh;
+  align-items: center;
+
+  .home-container__slogan {
+    font-size: 50px;
+    color: var(--white);
+  }
+
+  .home-container__button {
+    background-color: var(--primary);
+    padding: 1rem 1.5rem;
+    color: var(--grey);
+    font-size: 20px;
+    line-height: 1.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--primary);
+    }
+  }
+}
