@@ -17,10 +17,10 @@ const Navigation = () => {
       </div>
       <div
         className={`nav-container__link ${
-          path === "/booksList" ? "active" : ""
+          path === "/booklist" ? "active" : ""
         }`}
       >
-        <Link href="/booksList">BookList</Link>
+        <Link href="/booklist">Book List</Link>
       </div>
       <div
         className={`nav-container__link ${path === "/create" ? "active" : ""}`}
