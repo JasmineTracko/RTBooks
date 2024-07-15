@@ -1,36 +1,9 @@
-"use client";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
+import { getBookById } from "@/app/_services/getBookById";
 
-interface Book {
-  author: string;
-  title: string;
-  image: string;
-  read: string;
-}
-
-const ViewBook = () => {
-  const [book, setBook] = useState<Book | null>(null);
-  const { id } = useParams();
-
-  const getBookById = async (id: string) => {
-    try {
-      const res = await fetch(`/api/book/${id}`);
-      if (res.status === 200) {
-        const data = await res.json();
-        setBook(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      getBookById(id as string);
-    }
-  }, [id]);
+const ViewBook = async ({ params }: any) => {
+  const book = await getBookById(params.id);
 
   return (
     <div>
@@ -39,10 +12,10 @@ const ViewBook = () => {
           <Image
             src={book.image}
             alt={`book.title + book.author`}
-            width={200}
-            height={200}
+            width={50}
+            height={70}
           />
-          {book.title} - {book.author} - Lho letto ? {book.read ? "si" : "no"}
+          {book.title} - {book.author} -{book.read ? "si" : "no"}
         </>
       )}
     </div>

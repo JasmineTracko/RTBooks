@@ -3,6 +3,8 @@ import "./globals.css";
 import SessionWrapper from "./_components/SessionWrapper";
 import Navigation from "./_components/Navigation";
 import { Josefin_Sans } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Josefin_Sans({ subsets: ["latin"] });
 
@@ -25,6 +27,7 @@ export default function RootLayout({
         >
           <Navigation />
           {children}
+          <ToastContainer />
         </body>
       </html>
     </SessionWrapper>

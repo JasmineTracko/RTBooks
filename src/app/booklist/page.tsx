@@ -2,11 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { getBooks } from "../_services/getBooks";
+import Loader from "../_components/Loader";
 
 const BookList = async () => {
   const books = await getBooks();
-  console.log(books);
-  console.log("render");
 
   /*   const deleteBook = async (id: string) => {
     try {
@@ -22,7 +21,6 @@ const BookList = async () => {
 
   return (
     <>
-      <div>Read data from MongoDB with Mongoose</div>
       {books &&
         books.length > 0 &&
         books.map((book: Book) => (

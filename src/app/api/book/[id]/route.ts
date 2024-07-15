@@ -4,7 +4,7 @@ import Book from "../../../../../models/Book";
 import cloudinary from "../../../../../config/cloudinary";
 
 // DELETE /api/book/:id
-export const DELETE = async (request: any, { params }) => {
+export const DELETE = async (request: any, { params }: any) => {
   try {
     await connectDB();
 
@@ -30,7 +30,7 @@ export const DELETE = async (request: any, { params }) => {
 };
 
 // PATCH /api/book/:id
-export const PUT = async (request: any, { params }) => {
+export const PUT = async (request: any, { params }: any) => {
   try {
     await connectDB();
 
@@ -83,30 +83,6 @@ export const PUT = async (request: any, { params }) => {
     await Book.findByIdAndUpdate(id, updatedBook);
 
     return new Response("Book Updated", { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return new Response("Something went wrong", { status: 500 });
-  }
-};
-
-// GET /api/book/:id
-export const GET = async (request: any, { params }) => {
-  try {
-    await connectDB();
-
-    const { id } = params;
-
-    const sessionUser = await getServerSession();
-
-    if (!sessionUser || !sessionUser.user) {
-      return new Response("User ID is required", { status: 401 });
-    }
-
-    const book = await Book.findById(id);
-
-    if (!book) return new Response("Book Not Found", { status: 404 });
-
-    return new Response(JSON.stringify(book), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("Something went wrong", { status: 500 });

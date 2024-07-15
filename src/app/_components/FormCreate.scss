@@ -1,0 +1,57 @@
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #1a202c;
+  font-size: 16px;
+  color: var(--white);
+  width: 35%;
+  margin: 0 auto;
+  border-radius: 16px;
+  margin-top: 2rem;
+
+  .create-form__input {
+    padding: 0.5rem;
+    background-color: #edf2f7;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    color: var(--grey);
+  }
+
+  .create-form__radio-container {
+    display: flex;
+    gap: 0.6rem;
+
+    input[type="radio"] {
+      margin: 0;
+      width: 17px;
+      height: 17px;
+      &:checked {
+        accent-color: var(--primary);
+      }
+    }
+  }
+
+  .create-form__button {
+    background-color: var(--primary);
+    padding: 0.5rem 1rem;
+    color: var(--grey);
+    font-size: 16px;
+    font-weight: 600;
+    width: 50%;
+    margin: 0 auto;
+    border-color: var(--secondary);
+
+    &:hover {
+      background-color: var(--secondary);
+      border-color: var(--primary);
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .create-form {
+    width: 70%;
+  }
+}
