@@ -9,7 +9,7 @@ interface RedirectButtonProps {
 
 const RedirectButton: FC<RedirectButtonProps> = ({ redirectUri, text }) => {
   return (
-    <Link href={redirectUri} className="global__button">
+    <Link href={redirectUri} className="redirect__button">
       {text}
     </Link>
   );

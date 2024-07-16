@@ -103,7 +103,7 @@ const FormCreate = () => {
           type="radio"
           id="read_radio"
           checked={isRead === "read"}
-          onClick={() => setIsRead("read")}
+          onChange={() => setIsRead("read")}
         />
         <label htmlFor="read_radio">Read</label>
       </div>
@@ -112,7 +112,7 @@ const FormCreate = () => {
           type="radio"
           id="unread_radio"
           checked={isRead === "unread"}
-          onClick={() => setIsRead("unread")}
+          onChange={() => setIsRead("unread")}
         />
         <label htmlFor="unread">Not Read</label>
       </div>
