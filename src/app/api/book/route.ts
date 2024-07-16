@@ -10,7 +10,7 @@ export const POST = async (request: any) => {
     const sessionUser = await getServerSession();
 
     if (!sessionUser || !sessionUser.user) {
-      return new Response("User ID is required", { status: 401 });
+      return new Response("You must be logged in", { status: 401 });
     }
 
     const formData = await request.formData();
