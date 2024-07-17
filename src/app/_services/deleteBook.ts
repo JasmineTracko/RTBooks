@@ -12,5 +12,6 @@ export const deleteBook = async (bookId: string) => {
 
   await connectDB();
   await Book.findByIdAndDelete({ _id: bookId });
+  
   revalidatePath("/booklist");
 };

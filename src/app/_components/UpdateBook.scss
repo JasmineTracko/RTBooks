@@ -1,0 +1,15 @@
+.update-form__button {
+    background-color: var(--primary);
+    padding: 0.5rem 1rem;
+    color: var(--grey);
+    font-size: 16px;
+    font-weight: 600;
+    width: 70%;
+    margin: 0 auto;
+    border-color: var(--secondary);
+
+    &:hover {
+      background-color: var(--secondary);
+      border-color: var(--primary);
+    }
+  }

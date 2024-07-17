@@ -22,6 +22,7 @@ const DeleteBook: FC<DeleteBookProps> = ({ bookId }) => {
         onClick={handleDelete}
         className="delete_book_submit"
         type="submit"
+        disabled={isPending}
       >
         {isPending ? <MiniLoader /> : "Delete Book"}
       </button>

@@ -1,108 +1,67 @@
-"use client";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import UpdateBookButton from "@/app/_components/UpdateBook";
+import { getBookById } from "@/app/_services/getBookById";
+import React, { FC } from "react";
+import "./editBook.scss";
+import { updateBook } from "@/app/_services/updateBook";
 
-const EditBook = () => {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [image, setImage] = useState<File | null>(null);
-  const [isRead, setIsRead] = useState("");
-
-  const { id } = useParams();
-
-  const getBookById = async (id: string) => {
-    try {
-      const res = await fetch(`/api/book/${id}`);
-      if (res.status === 200) {
-        const data = await res.json();
-        setTitle(data.title);
-        setAuthor(data.author);
-        setIsRead(data.read ? "read" : "");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+interface EditBookProps {
+  params: {
+    id: string;
   };
+}
 
-  useEffect(() => {
-    getBookById(id as string);
-  }, [id]);
+const EditBook: FC<EditBookProps> = async ({ params }) => {
+  const { id } = params;
+  const book = await getBookById(id);
+  const { title, author, read } = book || {};
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("author", author);
-    if (image) {
-      formData.append("image", image);
-    }
-    formData.append("read", isRead);
-
-    try {
-      const res = await fetch(`/api/book/${id}`, {
-        method: "PUT",
-        body: formData,
-      });
-
-      if (res.status === 200) {
-        console.log("book edit");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <>
-      <div>Edit a value (PUT) in MONGO DB with Mongoose</div>
-      <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <label>Author</label>
-        <input
-          type="text"
-          id="author"
-          name="author"
-          required
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        />
-        <label>Image</label>
-        <input
-          type="file"
-          id="image"
-          name="image"
-          onChange={(e) => setImage(e.target.files?.[0] || null)}
-        />
+      {book && (
+        <form action={updateBook} className="create-form">
+          <input type="hidden" value={id} name="id" />
+          <label>Title</label>
+          <input
+            type="text"
+            name="title"
+            required
+            defaultValue={title}
+            className="create-form__input"
+          />
+          <label>Author</label>
+          <input
+            type="text"
+            name="author"
+            required
+            defaultValue={author}
+            className="create-form__input"
+          />
+          <label>Image</label>
+          <input type="file" name="image" className="create-form__input" />
 
-        <input
-          type="radio"
-          name="isRead"
-          value="read"
-          onClick={() => setIsRead("read")}
-          checked={isRead === "read"}
-        />
-        <label>Read</label>
-        <input
-          type="radio"
-          name="isRead"
-          value="unread"
-          onClick={() => setIsRead("")}
-          checked={isRead === ""}
-        />
-        <label>Not Read</label>
-
-        <div>
-          <button type="submit">Edit Book</button>
-        </div>
-      </form>
+          <div className="create-form__radio-container">
+            <input
+              type="radio"
+              name="isRead"
+              id="read_radio"
+              value="read"
+              defaultChecked={read}
+            />
+            <label htmlFor="read_radio">Read</label>
+          </div>
+          <div className="create-form__radio-container">
+            <input
+              type="radio"
+              name="isRead"
+              id="read_radio"
+              value="unread"
+              defaultChecked={!read}
+            />
+            <label htmlFor="read_radio">Not Read</label>
+          </div>
+          <UpdateBookButton bookId={id} />
+        </form>
+      )}
     </>
   );
 };
