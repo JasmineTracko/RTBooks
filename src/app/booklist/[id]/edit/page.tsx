@@ -59,7 +59,7 @@ const EditBook: FC<EditBookProps> = async ({ params }) => {
             />
             <label htmlFor="read_radio">Not Read</label>
           </div>
-          <UpdateBookButton bookId={id} />
+          <UpdateBookButton />
         </form>
       )}
     </>
