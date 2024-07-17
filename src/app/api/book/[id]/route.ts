@@ -3,32 +3,6 @@ import { getServerSession } from "next-auth";
 import Book from "../../../../../models/Book";
 import cloudinary from "../../../../../config/cloudinary";
 
-// DELETE /api/book/:id
-export const DELETE = async (request: any, { params }: any) => {
-  try {
-    await connectDB();
-
-    const { id } = params;
-
-    const sessionUser = await getServerSession();
-
-    if (!sessionUser || !sessionUser.user) {
-      return new Response("User ID is required", { status: 401 });
-    }
-
-    const bookToDelete = await Book.findById(id);
-
-    if (!bookToDelete) return new Response("Book Not Found", { status: 404 });
-
-    await Book.deleteOne();
-
-    return new Response("Book Deleted", { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return new Response("Something went wrong", { status: 500 });
-  }
-};
-
 // PATCH /api/book/:id
 export const PUT = async (request: any, { params }: any) => {
   try {
