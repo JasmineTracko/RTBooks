@@ -6,4 +6,20 @@
   justify-content: space-between;
   border-radius: 16px;
   margin: 0 auto;
+
+  .book_container__book_detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 20px;
+
+    span {
+      display: flex;
+      gap: 0.5rem;
+      strong {
+        color: var(--primary);
+      }
+    }
+  }
 }

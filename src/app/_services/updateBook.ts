@@ -45,8 +45,6 @@ export const updateBook = async (formData: FormData) => {
   const bookToModify = await Book.findById(bookId);
   if (!bookToModify) throw new Error("Invalid Book ID.");
 
-  console.log(formData.get("read"))
-
   const bookData = {
     title: formData.get("title") || bookToModify.title,
     author: formData.get("author") || bookToModify.author,

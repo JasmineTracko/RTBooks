@@ -1,3 +1,4 @@
+"use server"
 import { notFound } from "next/navigation";
 import connectDB from "../../../config/database";
 import Book from "../../../models/Book";
