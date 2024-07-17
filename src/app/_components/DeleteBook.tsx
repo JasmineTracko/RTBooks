@@ -12,7 +12,7 @@ const DeleteBook: FC<DeleteBookProps> = ({ bookId }) => {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
-    if (confirm("Are you sure you want to delete this reservation?"))
+    if (confirm("Are you sure you want to delete this book?"))
       startTransition(() => deleteBook(bookId));
   };
 

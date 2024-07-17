@@ -1,8 +1,8 @@
-import UpdateBookButton from "@/app/_components/UpdateBook";
 import { getBookById } from "@/app/_services/getBookById";
 import React, { FC } from "react";
 import "./editBook.scss";
 import { updateBook } from "@/app/_services/updateBook";
+import SubmitFormButton from "@/app/_components/SubmitFormButton";
 
 interface EditBookProps {
   params: {
@@ -42,7 +42,7 @@ const EditBook: FC<EditBookProps> = async ({ params }) => {
           <div className="create-form__radio-container">
             <input
               type="radio"
-              name="isRead"
+              name="read"
               id="read_radio"
               value="read"
               defaultChecked={read}
@@ -52,14 +52,14 @@ const EditBook: FC<EditBookProps> = async ({ params }) => {
           <div className="create-form__radio-container">
             <input
               type="radio"
-              name="isRead"
+              name="read"
               id="read_radio"
               value="unread"
               defaultChecked={!read}
             />
             <label htmlFor="read_radio">Not Read</label>
           </div>
-          <UpdateBookButton />
+          <SubmitFormButton label="Update Book" />
         </form>
       )}
     </>
