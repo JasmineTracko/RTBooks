@@ -22,7 +22,7 @@ const ViewBook = async ({ params }: any) => {
     <>
       {book && (
         <div className="book-container">
-          <div>
+          <div className="book-container__book_image">
             <Image
               src={book.image}
               alt={`${book.title} ${book.author}`}

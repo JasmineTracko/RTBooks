@@ -1,8 +1,9 @@
 .book-container {
   display: flex;
-  width: 70%;
+  width: 55%;
   background-color: var(--bg-color);
   padding: 1.5rem;
+  gap: 1rem;
   justify-content: space-between;
   border-radius: 16px;
   margin: 0 auto;
@@ -21,5 +22,21 @@
         color: var(--primary);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .book-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .book-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .book-container__book_image {
+    margin: 0 auto;
   }
 }
