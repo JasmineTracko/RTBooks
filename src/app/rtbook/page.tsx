@@ -9,11 +9,11 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import RedirectButton from "../_components/RedirectButton";
 
 const Ritual = () => {
+  const defaultErrorMessage = "You are not authorized to perform this action";
   const [books, setBooks] = useState<Book[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState([false, ""]);
+  const [isError, setIsError] = useState("");
 
-  const defaultErrorMessage = "Something went wrong";
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +21,7 @@ const Ritual = () => {
         const response = await getBooks();
         setBooks(response);
       } catch (error: any) {
-        setIsError([true, (error.message as string) || defaultErrorMessage]);
+        setIsError(defaultErrorMessage);
       } finally {
         setIsLoading(false);
       }
@@ -40,18 +40,18 @@ const Ritual = () => {
           ) || null
       );
     } catch (error: any) {
-      setIsError([true, (error.message as string) || defaultErrorMessage]);
+      setIsError(defaultErrorMessage);
     } finally {
       setIsLoading(false);
     }
   };
 
   if (isLoading) return <Loader />;
-  if (isError[0])
+  if (isError)
     return (
       <div className="error-container">
         <MdOutlineErrorOutline />
-        <h1>{isError[1]}</h1>
+        <h1>{isError}</h1>
         <RedirectButton text="Back to Home Page" redirectUri="/" />
       </div>
     );
