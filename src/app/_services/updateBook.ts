@@ -1,19 +1,16 @@
 "use server";
-import { getServerSession } from "next-auth";
 import connectDB from "../../../config/database";
 import Book from "../../../models/Book";
 import { revalidatePath } from "next/cache";
 import cloudinary from "../../../config/cloudinary";
 import { redirect } from "next/navigation";
+import { isAdmin } from "./checkIsAdmin";
 
 export const updateBook = async (formData: FormData) => {
-  const session = await getServerSession();
-
   const bookId = formData.get("id");
-
-  if (!session) throw new Error("You must be logged in");
   if (!bookId) throw new Error("Invalid Book Id");
 
+  await isAdmin();
   await connectDB();
 
   let imageUrl = null;

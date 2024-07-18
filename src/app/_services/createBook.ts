@@ -1,15 +1,12 @@
 "use server";
-import { getServerSession } from "next-auth";
 import connectDB from "../../../config/database";
 import Book from "../../../models/Book";
 import { revalidatePath } from "next/cache";
 import cloudinary from "../../../config/cloudinary";
+import { isAdmin } from "./checkIsAdmin";
 
 export const createBook = async (formData: FormData) => {
-  const session = await getServerSession();
-
-  if (!session) throw new Error("You must be logged in");
-
+  await isAdmin();
   await connectDB();
 
   const image = formData.get("image");
