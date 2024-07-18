@@ -9,7 +9,7 @@ export default function Home() {
       <Image src={cover} alt="book" placeholder="blur" quality={70} fill />
       <div className="home-container">
         <h1 className="home-container__slogan">Choose your Next Book.</h1>
-        <RedirectButton text="Explore our Books" redirectUri="/rtbooks" />
+        <RedirectButton text="Explore our Books" redirectUri="/rtbook" />
       </div>
     </main>
   );
