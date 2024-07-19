@@ -3,7 +3,9 @@ import "./Loader.scss";
 
 const Loader = () => {
   return (
-    <div className="loader"></div>
+    <div style={{ marginTop: "10rem" }}>
+      <div className="loader"></div>
+    </div>
   );
 };
 

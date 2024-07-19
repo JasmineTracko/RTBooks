@@ -6,7 +6,7 @@ import RedirectButton from "./_components/RedirectButton";
 export default function Home() {
   return (
     <main>
-      <Image src={cover} alt="book" placeholder="blur" quality={70} fill />
+      <Image src={cover} alt="book" placeholder="blur" quality={70} fill className="image-fit"/>
       <div className="home-container">
         <h1 className="home-container__slogan">Choose your Next Book.</h1>
         <RedirectButton text="Explore our Books" redirectUri="/rtbook" />
